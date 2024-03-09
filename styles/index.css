@@ -1,0 +1,12 @@
+.tracker-container{
+  height: 100vh;
+  min-height: fit-content;
+  background-color: black;
+  padding: 40px;
+}
+
+.balance-wrapper{
+  min-height: 200px;
+  padding: 20px;
+  background-color: grey;
+}

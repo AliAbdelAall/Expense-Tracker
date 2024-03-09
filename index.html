@@ -3,9 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <link rel="stylesheet" href="./styles/common/colors.css">
+  <link rel="stylesheet" href="./styles/common/utilities.css">
+  <link rel="stylesheet" href="./styles/index.css">
+  <title>Expense Tracker</title>
 </head>
 <body>
-  
+  <div class="tracker-container">
+    <div class="flex balance-filters-wrapper">
+      <div class="flex column balance-wrapper white">
+        <div class="total-balance-wrapper">
+          <p>Total Balace</p>
+          <p>0 USD</p>
+        </div>
+        <div class="flex total-income-expense">
+          <div class="total-income">
+            <p>Total Income</p>
+            <p>0 USD</p>
+          </div>
+          <div class="total-expense">
+            <p>Total Expence</p>
+            <p>0 USD</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex filters">
+        <div class="flex column drop-down-filters">
+          <select name="type" id="type">
+            <option value="all">All</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <select name="currency" id="currency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="AED">AED</option>
+            <option value="LBP">LBP</option>
+          </select>
+        </div>
+        <div class="flex column numeric-filters">
+          <input id="amount-from" type="number" placeholder="Amount From" step="1">
+          <input id="amount-from" type="number" placeholder="Amount From" step="1">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
