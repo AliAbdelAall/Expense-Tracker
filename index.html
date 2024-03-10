@@ -22,24 +22,24 @@
       <div class="flex space-between wrap balance-filters-wrapper">
         <section class="flex column space-between balance-wrapper radius-10 grey-background white">
           <div class=" total-balance-wrapper">
-            <p  >Total Balace</p>
-            <h1 id="total-balance">1245 USD</h1>
+            <p >Total Balace</p>
+            <h1><span id="total-balance">0</span> USD</h1>
           </div>
           <div class="flex total-income-expense">
             <div class="radius-10 padding-7-15 dark-grey-background total-income">
               <p class="total-inc-exp-lab">Total Income</p>
-              <p class="total-inc-exp-num" id="total-income">1420 USD</p>
+              <p class="total-inc-exp-num"><span id="total-income">0</span> USD</p>
             </div>
             <div class="radius-10 padding-7-15 dark-grey-background total-expense">
               <p class="total-inc-exp-lab">Total Expense</p>
-              <p class="total-inc-exp-num" id="total-expense">2340 USD</p>
+              <p class="total-inc-exp-num"><span id="total-expense">0</span> USD</p>
             </div>
           </div>
         </section>
         <!-- filters-add-wrapper -->
         <section class="flex wrap column space-between filters-add-wrapper ">
           <div class="flex column wrap space-between radius-10 grey-background filters-wrapper">
-            <label class="white label" for="filters-wrapper">Filters :</label>
+            <p class="white label">Filters :</p>
             <div class="flex wrap gap-10 space-between radius-10 filters">
               <div class="flex gap-10 drop-down-filters">
                 <select class="padding-7-15 no-outln radius-10" id="filter-type">
@@ -63,8 +63,8 @@
           </div>
           <!-- add-transaction -->
           <div class="flex column wrap radius-10 add-transaction grey-background">
-            <label class="white label" for="add-transaction">Add Transaction :</label>
-            <label id="input_handler" class="hidden red" for="add-transaction">Please Fill All Required Fields</label>
+            <p class="white p" for="add-transaction">Add Transaction :</p>
+            <p id="input_handler" class="hidden red" for="add-transaction">Please Fill All Required Fields</p>
             <div class="flex justify-start wrap radius-10 gap-10">
               <button class="bg-primary-color white radius-10 no-bor no-outl padding-7-15 add-btn" id="add_btn">Add</button>
               <div class="flex gap-10 wrap">

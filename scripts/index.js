@@ -13,6 +13,25 @@ const add_input = document.getElementById("add-input")
 const transactions = document.getElementById("transactions")
 const input_handler = document.getElementById("input_handler")
 
+// const get_currencies = fetch("https://crowded-cyan-wildebeest.cyclic.app/students/available")
+// get_currencies.then(response => response.json())
+//   .then(data => console.log(data))
+//   .catch(reject => console.log(reject))
+
+const currencies_data = [
+  {
+    code: "USD"
+  },
+  {
+    code: "EUR"
+  },
+  {
+    code: "AED"
+  },
+  {
+    code: "LBP"
+  }
+]
 
 const createElement = (type, classes, value) => {
   const element = document.createElement(type)
@@ -31,17 +50,17 @@ const createTransaction = (type, amount, currency, info) => {
     input_handler.classList.remove("hidden")
     return
   }
-  input_handler.classList.remove("hidden")
+  input_handler.classList.add("hidden")
   const outer_div = createElement("div", ["flex", "align-center", "dark-grey-background", "padding-7-15", "radius-10", "space-between", "transaction"], null)
-  const info_div = createElement("div", ["flex", "gap-10", "transaction-info"], null)
-  const edit_delete_div = createElement("div", ["flex", "gap-10", "wrap", "edit-delete"], null)
+  const info_div = createElement("div", ["flex", "gap-10", "transaction-info", "white"], null)
+  const edit_delete_div = createElement("div", ["flex", "wrap", "gap-10", "edit-delete"], null)
   const amount_currency_div = createElement("div", [], null)
   const type_ele = createElement("i", ["fa-solid", `${type === "expense" ? "fa-arrow-down" : "fa-arrow-up"}`], null)
-  const amount_ele = createElement("span", ["amount"], amount)
+  const amount_ele = createElement("span", ["amount"], `${type === "expense" ? `- ${amount}` : `+ ${amount}`}`)
   const currency_ele = createElement("span", ["currency"], currency)
   const description = createElement("span", ["currency"], info)
-  const edit_ele = createElement("div", ["bg-primary-color", "padding-7-15", "radius-10", "no-bor", "no-outln", "white", "edit"], "Edit")
-  const delele_ele = createElement("div", ["bg-color-red", "padding-7-15", "radius-10", "no-bor", "no-outln", "white", "delete"], "Delete")
+  const edit_ele = createElement("button", ["bg-primary-color", "padding-7-15", "radius-10", "no-bor", "no-outln", "white", "edit"], "Edit")
+  const delele_ele = createElement("button", ["bg-color-red", "padding-7-15", "radius-10", "no-bor", "no-outln", "white", "delete"], "Delete")
 
   amount_currency_div.appendChild(amount_ele)
   amount_currency_div.appendChild(currency_ele)
@@ -56,34 +75,32 @@ const createTransaction = (type, amount, currency, info) => {
   return outer_div
 }
 
-
-add_btn.addEventListener("click", () => {
-  const add_transaction = createTransaction(add_type.value, add_amount.value, add_currency.value, add_input.value)
-  if (add_transaction) {
-    transactions.appendChild(add_transaction)
+const addTransaction = (transaction) => {
+  if (transaction) {
+    transactions.appendChild(transaction)
+    add_amount.value = ""
+    add_input.value = ""
   }
+}
 
+const deleteElement = (element) => {
+  if (element.target.tagName === "BUTTON") {
+    if (element.target.innerText === "Delete") {
+      element.target.parentElement.parentElement.remove()
+    }
+  }
+}
+
+transactions.addEventListener("click", (element) => {
+  deleteElement(element)
 })
 
+add_btn.addEventListener("click", () => {
+  addTransaction(createTransaction(add_type.value, add_amount.value, add_currency.value, add_input.value))
+})
 
-/* <div class="flex align-center dark-grey-background padding-7-15 radius-10 space-between transaction">
-  <div class="flex gap-10 wrap transaction-info white" >
-    <span class="type">Expense</span>
-    <div>
-      <span class="amount">50</span>
-      <span class="currency">USD</span>
-    </div>
-    <span class="description">Groceries</span>
-  </div>
-  <div class="flex wrap gap-10 edit-delete">
-    <button class="bg-primary-color white padding-7-15 radius-10 no-bor no-outln edit">Edit</button>
-    <button class="bg-color-red white padding-7-15 radius-10 no-bor no-outln delete">Delete</button>
-  </div>
-</div> */
+// const currencies = fetch("https://crowded-cyan-wildebeest.cyclic.app/students/available")
 
-
-const currencies = fetch("https://crowded-cyan-wildebeest.cyclic.app/students/available")
-
-currencies.then(response => response.json())
-  .then(data => console.log(data))
-  .catch(reject => console.log(reject))
+// currencies.then(response => response.json())
+//   .then(data => console.log(data))
+//   .catch(reject => console.log(reject))
