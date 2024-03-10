@@ -49,6 +49,30 @@
   align-items: start;
 }
 
+.wrap{
+  flex-wrap: wrap;
+}
+
 .no-style{
   list-style: none;
+}
+
+.radious-10{
+  border-radius: 10px;
+}
+
+.padding-7-15{
+  padding: 7px 15px;
+}
+
+.no-bor{
+  border: none;
+}
+
+.no-outln{
+  outline: none;
+}
+
+.gap-10{
+  gap: 10px;
 }

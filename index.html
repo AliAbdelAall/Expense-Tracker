@@ -13,41 +13,85 @@
   <title>Expense Tracker</title>
 </head>
 <body>
-  <div class="tracker-container">
-    <div class="flex balance-filters-wrapper">
-      <div class="flex column balance-wrapper white">
-        <div class="total-balance-wrapper">
-          <p>Total Balace</p>
-          <p>0 USD</p>
-        </div>
-        <div class="flex total-income-expense">
-          <div class="total-income">
-            <p>Total Income</p>
-            <p>0 USD</p>
+  <div class="flex justify-center tracker-container">
+    <div class=" dark-grey-background content-wrapper">
+      <div class="flex space-between wrap balance-filters-wrapper">
+        <section class="flex column space-between balance-wrapper radious-10 grey-background white">
+          <div class=" total-balance-wrapper">
+            <p>Total Balace</p>
+            <h1>0 USD</h1>
           </div>
-          <div class="total-expense">
-            <p>Total Expence</p>
-            <p>0 USD</p>
+          <div class="flex  total-income-expense">
+            <div class="radious-10 padding-7-15 dark-grey-background total-income">
+              <p>Total Income</p>
+              <p>0 USD</p>
+            </div>
+            <div class="radious-10 padding-7-15 dark-grey-background total-expense">
+              <p>Total Expence</p>
+              <p>0 USD</p>
+            </div>
           </div>
-        </div>
+        </section>
+        <section class="flex wrap column space-between filters-add-wrapper ">
+          <div class="flex wrap space-between radious-10 grey-background filters-wrapper">
+            <div class="flex column gap-10 drop-down-filters">
+              <select class="no-outln radious-10" id="filter-type">
+                <option value="all">All</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+              <select class="no-outln radious-10" id="fliter-currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="AED">AED</option>
+                <option value="LBP">LBP</option>
+              </select>
+            </div>
+            <div class="flex wrap column gap-10 numeric-filters">
+              <input class="no-bor no-outln radious-10" id="amount-from" type="number" placeholder="Amount From" step="1">
+              <input class="no-bor no-outln radious-10" id="amount-from" type="number" placeholder="Amount From" step="1">
+            </div>
+          </div>
+          <div class="flex justify-start wrap radious-10 add-transaction grey-background">
+            <button class="radious-10 no-bor no-outl padding-7-15 add-btn" id="add_btn">Add</button>
+            <select class="no-outln radious-10 padding-7-15 add-type" id="add-type">
+              <option  value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+            <select class="no-outln radious-10 padding-7-15 add-currency" id="add-currency">
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="AED">AED</option>
+              <option value="LBP">LBP</option>
+            </select>
+            <input class="no-bor no-outln radious-10 padding-7-15" id="add-input" placeholder="Info" type="text">
+          </div>
+        </section>
       </div>
-      <div class="flex filters">
-        <div class="flex column drop-down-filters">
-          <select name="type" id="type">
-            <option value="all">All</option>
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
-          </select>
-          <select name="currency" id="currency">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="AED">AED</option>
-            <option value="LBP">LBP</option>
-          </select>
+      <div class = "transactions-wrapper padding-7-15 radious-10 grey-background">
+        <div class="flex space-between">
+          <div class="flex wrap transaction-info" >
+            <span class="type">Expense</span>
+            <span class="amount">$50</span>
+            <span class="currency">USD</span>
+            <span class="description">Groceries</span>
+          </div>
+          <div>
+            <button class="padding-7-15 edit">Edit</button>
+            <button class="padding-7-15 delete">Delete</button>
+          </div>
         </div>
-        <div class="flex column numeric-filters">
-          <input id="amount-from" type="number" placeholder="Amount From" step="1">
-          <input id="amount-from" type="number" placeholder="Amount From" step="1">
+        <div class="flex space-between transaction">
+          <div>
+           <span class="type">Income</span>
+           <span class="amount">$200</span>
+           <span class="currency">USD</span>
+           <span class="description">Salary</span>
+          </div>
+          <div>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </div>
         </div>
       </div>
     </div>
