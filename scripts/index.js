@@ -15,38 +15,43 @@ const input_handler = document.getElementById("input_handler")
 
 let currencies
 
-const get_currencies = fetch(" https://rich-erin-angler-hem.cyclic.app/students/available")
-get_currencies.then(response => response.json())
-  .then(data => currencies = data)
-  .catch(reject => console.log(reject))
+const result_currencies = fetch(" https://rich-erin-angler-hem.cyclic.app/students/available")
 
-const post_currencies = (cur, new_cur, amount) => {
-  fetch("https://ivory-ostrich-yoke.cyclic.app/students/convert", {
+const getCurrencies = async () => {
+  const response = await result_currencies
+  const data = await response.json()
+  currencies = data
+}
+const post_currencies = async (cur, amount) => {
+  const response = fetch("https://ivory-ostrich-yoke.cyclic.app/students/convert", {
     method: "POST",
     from: cur,
-    to: new_cur,
+    to: "USD",
     amount: amount
-  }).then
+  })
+  const data = await response.json()
+
+  return data
 }
 
 let total_income_update = 0
 let total_expense_update = 0
 let total_balance_update = 0
 
-const currencies_data = [
-  {
-    code: "USD"
-  },
-  {
-    code: "EUR"
-  },
-  {
-    code: "AED"
-  },
-  {
-    code: "LBP"
-  }
-]
+// const currencies_data = [
+//   {
+//     code: "USD"
+//   },
+//   {
+//     code: "EUR"
+//   },
+//   {
+//     code: "AED"
+//   },
+//   {
+//     code: "LBP"
+//   }
+// ]
 
 const createElement = (type, classes, value) => {
   const element = document.createElement(type)
