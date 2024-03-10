@@ -13,10 +13,25 @@ const add_input = document.getElementById("add-input")
 const transactions = document.getElementById("transactions")
 const input_handler = document.getElementById("input_handler")
 
-// const get_currencies = fetch("https://crowded-cyan-wildebeest.cyclic.app/students/available")
-// get_currencies.then(response => response.json())
-//   .then(data => console.log(data))
-//   .catch(reject => console.log(reject))
+let currencies
+
+const get_currencies = fetch(" https://rich-erin-angler-hem.cyclic.app/students/available")
+get_currencies.then(response => response.json())
+  .then(data => currencies = data)
+  .catch(reject => console.log(reject))
+
+const post_currencies = (cur, new_cur, amount) => {
+  fetch("https://ivory-ostrich-yoke.cyclic.app/students/convert", {
+    method: "POST",
+    from: cur,
+    to: new_cur,
+    amount: amount
+  }).then
+}
+
+let total_income_update = 0
+let total_expense_update = 0
+let total_balance_update = 0
 
 const currencies_data = [
   {
@@ -58,7 +73,7 @@ const createTransaction = (type, amount, currency, info) => {
   const type_ele = createElement("i", ["fa-solid", `${type === "expense" ? "fa-arrow-down" : "fa-arrow-up"}`], null)
   const amount_ele = createElement("span", ["amount"], `${type === "expense" ? `- ${amount}` : `+ ${amount}`}`)
   const currency_ele = createElement("span", ["currency"], currency)
-  const description = createElement("span", ["currency"], info)
+  const description = createElement("span", ["info"], info)
   const edit_ele = createElement("button", ["bg-primary-color", "padding-7-15", "radius-10", "no-bor", "no-outln", "white", "edit"], "Edit")
   const delele_ele = createElement("button", ["bg-color-red", "padding-7-15", "radius-10", "no-bor", "no-outln", "white", "delete"], "Delete")
 
@@ -78,6 +93,7 @@ const createTransaction = (type, amount, currency, info) => {
 const addTransaction = (transaction) => {
   if (transaction) {
     transactions.appendChild(transaction)
+    saveTransactions()
     add_amount.value = ""
     add_input.value = ""
   }
@@ -87,9 +103,14 @@ const deleteElement = (element) => {
   if (element.target.tagName === "BUTTON") {
     if (element.target.innerText === "Delete") {
       element.target.parentElement.parentElement.remove()
+      saveTransactions()
     }
   }
 }
+
+filter_type.addEventListener("change", (element) => {
+  console.log(element.target.value);
+})
 
 transactions.addEventListener("click", (element) => {
   deleteElement(element)
@@ -99,6 +120,15 @@ add_btn.addEventListener("click", () => {
   addTransaction(createTransaction(add_type.value, add_amount.value, add_currency.value, add_input.value))
 })
 
+function saveTransactions() {
+  localStorage.setItem("transactions", transactions.innerHTML)
+}
+
+function loadTransactions() {
+  transactions.innerHTML = localStorage.getItem("transactions")
+}
+
+loadTransactions()
 // const currencies = fetch("https://crowded-cyan-wildebeest.cyclic.app/students/available")
 
 // currencies.then(response => response.json())
