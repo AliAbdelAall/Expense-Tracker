@@ -109,6 +109,10 @@ button:hover{
   font-size: 20px;
 }
 
+.fa-arrow-up{
+  color: green;
+}
+
 @media only screen and (max-width: 1362px) {
   .balance-wrapper{
     flex-direction: row;
@@ -141,4 +145,8 @@ button:hover{
   .transaction-info{
     flex-direction: column;
   }
+}
+
+.hidden{
+  display: none;
 }

@@ -64,6 +64,7 @@
           <!-- add-transaction -->
           <div class="flex column wrap radius-10 add-transaction grey-background">
             <label class="white label" for="add-transaction">Add Transaction :</label>
+            <label id="input_handler" class="hidden red" for="add-transaction">Please Fill All Required Fields</label>
             <div class="flex justify-start wrap radius-10 gap-10">
               <button class="bg-primary-color white radius-10 no-bor no-outl padding-7-15 add-btn" id="add_btn">Add</button>
               <div class="flex gap-10 wrap">
@@ -90,9 +91,9 @@
       </div>
       <div class ="flex column gap-10 radius-10 transactions-wrapper grey-background" id="transactions">
         <!-- transaction start -->
-        <div class="flex align-center dark-grey-background padding-7-15 radius-10 space-between transaction">
+        <!-- <div class="flex align-center dark-grey-background padding-7-15 radius-10 space-between transaction">
           <div class="flex gap-10 wrap transaction-info white" >
-            <span class="type">Expense</span>
+            <span class="type"><i class="fa-solid fa-arrow-up"></i></span>
             <div>
               <span class="amount">50</span>
               <span class="currency">USD</span>
@@ -117,7 +118,7 @@
             <button class="bg-primary-color white padding-7-15 radius-10 no-bor no-outln edit">Edit</button>
             <button class="bg-color-red white padding-7-15 radius-10 no-bor no-outln delete">Delete</button>
           </div>
-        </div>
+        </div> -->
         <!-- transaction end -->
       </div>
     </div>
