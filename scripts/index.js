@@ -57,7 +57,13 @@ const createTransaction = (type, amount, currency, info) => {
 }
 
 
+add_btn.addEventListener("click", () => {
+  const add_transaction = createTransaction(add_type.value, add_amount.value, add_currency.value, add_input.value)
+  if (add_transaction) {
+    transactions.appendChild(add_transaction)
+  }
 
+})
 
 
 /* <div class="flex align-center dark-grey-background padding-7-15 radius-10 space-between transaction">
