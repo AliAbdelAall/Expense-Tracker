@@ -18,6 +18,28 @@ let total_income_update = parseFloat(total_income.innerText)
 let total_expense_update = parseFloat(total_expense.innerText)
 let total_balance_update = parseFloat(total_balance.innerText)
 
+function saveData() {
+  const data = {
+    transactions: transactions.innerHTML,
+    totalBalance: total_balance.innerText,
+    totalIncome: total_income.innerText,
+    totalExpense: total_expense.innerText
+  };
+  localStorage.setItem("expenseTrackerData", JSON.stringify(data));
+}
+
+function loadData() {
+  const savedData = JSON.parse(localStorage.getItem("expenseTrackerData"));
+  if (savedData) {
+    transactions.innerHTML = savedData.transactions;
+    total_balance.innerText = savedData.totalBalance;
+    total_income.innerText = savedData.totalIncome;
+    total_expense.innerText = savedData.totalExpense;
+  }
+}
+
+loadData()
+
 const result_currencies = fetch("https://rich-erin-angler-hem.cyclic.app/students/available")
 
 const getCurrencies = async () => {
@@ -35,7 +57,7 @@ getCurrencies();
 
 const convertCurrencies = async (cur, amount) => {
   try {
-    const response = await fetch("https://ivory-ostrich-yoke.cyclic.app/students/convert", {
+    const response = await fetch("https://rich-erin-angler-hem.cyclic.app/students/convert", {
       method: "POST",
       body: JSON.stringify({
         from: cur,
@@ -47,7 +69,6 @@ const convertCurrencies = async (cur, amount) => {
     return data.convertedAmount
   } catch (error) {
     console.error("Failed to convert currencies:", error)
-
   }
 }
 
@@ -79,9 +100,7 @@ const updateTotalBalance = async (type, amount_ele, currency_ele) => {
     total_income.innerText = parseFloat(total_income.innerText) + new_amount
     total_balance.innerText = parseFloat(total_balance.innerText) + new_amount
   }
-
 }
-
 
 const createTransaction = (type, amount, currency, info) => {
   const transactionId = `transaction-${Date.now()}`
@@ -122,7 +141,7 @@ const createTransaction = (type, amount, currency, info) => {
 const addTransaction = (transaction) => {
   if (transaction) {
     transactions.appendChild(transaction)
-    saveTransactions()
+    saveData()
     add_amount.value = ""
     add_input.value = ""
   }
@@ -138,13 +157,15 @@ const deleteTransaction = (transaction_id, amount_id) => {
   if (type === "expense") {
     total_expense.innerText = parseFloat(total_expense.innerText) - amount
     total_balance.innerText = parseFloat(total_balance.innerText) - amount
+    saveData()
   } else {
     total_income.innerText = parseFloat(total_income.innerText) - amount
     total_balance.innerText = parseFloat(total_balance.innerText) - amount
+    saveData()
   }
 
   transaction_div.remove()
-  saveTransactions()
+  saveData()
 };
 
 filter_type.addEventListener("change", (element) => {
@@ -164,13 +185,3 @@ add_btn.addEventListener("click", () => {
   addTransaction(createTransaction(add_type.value, add_amount.value, add_currency.value, add_input.value))
   console.log(add_currency.value, add_amount.value, add_type.value)
 })
-
-function saveTransactions() {
-  localStorage.setItem("transactions", transactions.innerHTML)
-}
-
-function loadTransactions() {
-  transactions.innerHTML = localStorage.getItem("transactions")
-}
-
-// loadTransactions()
