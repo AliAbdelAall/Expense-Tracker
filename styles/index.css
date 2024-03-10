@@ -7,7 +7,9 @@
 
 .content-wrapper{
   width: 60%;
+  height: auto;
   min-width: fit-content;
+  min-height: fit-content;
   padding: 20px;
 }
 
