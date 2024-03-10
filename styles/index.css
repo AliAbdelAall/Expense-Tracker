@@ -17,6 +17,15 @@ body{
   font: bold;
 }
 
+.header img{
+  height: 52px;
+  width: 52px;
+  border-radius: 40px;
+}
+.header img:hover{
+  cursor: pointer;
+}
+
 .tracker-container{
   min-height: 90vh;
   height: max-content;
@@ -51,7 +60,7 @@ body{
   flex-grow: 1;
   min-height: 100px;
   padding: 20px;
-  /* background-color: grey; */
+  gap: 10px;
 }
 
 .filters-wrapper{
@@ -63,6 +72,11 @@ body{
 .filters-add-wrapper{
   flex-grow: 2;
   gap: 10px;
+}
+
+.label{
+  font-size: 20px;
+  letter-spacing: 1px;
 }
 
 .add-transaction{
@@ -100,7 +114,7 @@ button:hover{
     flex-direction: row;
   }
 
-  .filters-wrapper{
+  .filters{
     justify-content: start;
   }
 }
@@ -108,7 +122,6 @@ button:hover{
 @media only screen and (max-width: 544px) {
   .balance-wrapper{
     flex-direction: column;
-    gap: 10px;
   }
 }
 
@@ -129,4 +142,3 @@ button:hover{
     flex-direction: column;
   }
 }
-
