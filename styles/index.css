@@ -1,7 +1,26 @@
+body{
+  background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(../assets/g-b-bg-3d\(1\).jpg);
+  background-position: center;
+  background-size: cover;
+}
+.header{
+  padding: 10px 50px;
+  width: 100%;
+}
+
+.header h1{
+  font-family: monospace;
+}
+
+.header p{
+  font-size: 16px;
+  font: bold;
+}
+
 .tracker-container{
-  height: 100vh;
-  min-height: fit-content;
-  background-color: black;
+  min-height: 90vh;
+  height: max-content;
+  /* background-color: black; */
   padding: 40px;
 }
 
@@ -15,6 +34,12 @@
 
 .total-income-expense{
   gap: 10px;
+  min-width: max-content;
+}
+
+.total-inc-exp-num{
+  font-size:  24px;
+  margin-top: 10px;
 }
 
 .balance-filters-wrapper{
@@ -26,7 +51,7 @@
   flex-grow: 1;
   min-height: 100px;
   padding: 20px;
-  background-color: grey;
+  /* background-color: grey; */
 }
 
 .filters-wrapper{
@@ -34,13 +59,6 @@
   gap: 10px;
 }
 
-.numeric-filters input{
-  padding: 7px 15px;
-}
-
-.drop-down-filters select{
-  padding: 7px 15px;
-}
 
 .filters-add-wrapper{
   flex-grow: 2;
@@ -52,9 +70,63 @@
   gap: 10px;
 }
 
-.add-transaction{
-  gap: 10px;
-
+.add-type{
+  padding: 7px 7px;
 }
 
+select, input , button{
+  font-size: 20px;
+}
+
+button{
+  font-weight: bold;
+}
+
+button:hover{
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.transactions-wrapper{
+  padding: 15px;
+}
+
+.transaction-info span{
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 1362px) {
+  .balance-wrapper{
+    flex-direction: row;
+  }
+
+  .filters-wrapper{
+    justify-content: start;
+  }
+}
+
+@media only screen and (max-width: 544px) {
+  .balance-wrapper{
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 422px) {
+  .total-income-expense{
+    flex-direction: column;
+  }
+
+  .edit-delete{
+    flex-direction: column;
+  }
+
+  .transaction{
+    justify-content: space-between;
+  }
+
+  .transaction-info{
+    flex-direction: column;
+  }
+}
 
