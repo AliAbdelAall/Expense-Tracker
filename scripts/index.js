@@ -11,7 +11,11 @@ const add_currency = document.getElementById("add-currency")
 const add_amount = document.getElementById("add-amount")
 const add_input = document.getElementById("add-input")
 const transactions = document.getElementById("transactions")
-const input_handler = document.getElementById("input_handler")
+const input_handler = document.getElementById("input-handler")
+const pupup_type = document.getElementById("pupup-type")
+const popup_currency = document.getElementById("popup-currency")
+const popup_amount = document.getElementById("popup-amount")
+const popup_input = document.getElementById("popup-input")
 
 let currencies;
 let total_income_update = parseFloat(total_income.innerText)
@@ -25,10 +29,10 @@ const getCurrencies = async () => {
     const response = await result_currencies;
     const data = await response.json()
     currencies = data
-    console.log(currencies, typeof (currencies))
     if (data) {
       loadCurrencies(filter_currency)
       loadCurrencies(add_currency)
+      loadCurrencies(popup_currency)
     }
   } catch (error) {
     console.error("Failed to fetch currencies:", error)
@@ -53,6 +57,9 @@ const convertCurrencies = async (cur, amount) => {
     console.error("Failed to convert currencies:", error)
   }
 }
+
+const convertedAmount = convertCurrencies("EUR", 100);
+console.log("Converted amount:", convertedAmount);
 
 const createElement = (type, classes, inner_text, value = null) => {
   const element = document.createElement(type)
@@ -188,6 +195,10 @@ const deleteTransaction = (transaction_id, amount_id) => {
   saveData()
 };
 
+const editTransaction = (transaction_id) => {
+
+}
+
 const filterTransactions = () => {
   const selected_type = filter_type.value
   const selected_currency = filter_currency.value
@@ -234,12 +245,14 @@ amount_from.addEventListener("input", () => {
 
 transactions.addEventListener("click", (element) => {
   const target = element.target
+  const transaction_id = target.closest(".transaction").id
+  const amount_id = target.closest(".transaction").querySelector(".amount").id
   if (element.target.classList.contains("delete")) {
-    const transaction_id = target.closest(".transaction").id
-    const amount_id = target.closest(".transaction").querySelector(".amount").id
     deleteTransaction(transaction_id, amount_id)
   }
-  if (element.target.classList.contains("edit"))
+  if (element.target.classList.contains("edit")) {
+    editTransaction(transaction_id)
+  }
 })
 
 add_btn.addEventListener("click", () => {

@@ -17,7 +17,27 @@
     <h1 class="white"><p>Cash</p>Flow</h1>
     <img src="./assets/prfile-white-bg.jpeg" alt="profile">
   </header>
+  
   <main class="flex justify-center tracker-container">
+    <!-- pupup -->
+    <div class="popup-container">
+      
+      <div id="popup" class="popup">
+          <select class="no-outln radius-10 add-type" id="pupup-type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <select class="no-outln radius-10 padding-7-15 add-currency" id="popup-currency">
+
+          </select>
+          <input class="padding-7-15 no-bor no-outln radius-10" id="popup-amount" type="number" placeholder="Amount" step="1">
+          <input class="no-bor no-outln radius-10 padding-7-15" id="popup-input" placeholder="Info" type="text">
+          <button id="pipup-btn">Confirm</button>
+          
+        </div>
+      </div>
+    </div>
+    <!-- visible main starts here -->
     <div class=" dark-grey-background radius-10 content-wrapper">
       <div class="flex space-between wrap balance-filters-wrapper">
         <section class="flex column space-between balance-wrapper radius-10 grey-background white">
@@ -47,6 +67,7 @@
                   <option value="income">Income</option>
                   <option value="expense">Expense</option>
                 </select>
+                <!-- currencies filter -->
                 <select class="padding-7-15 no-outln radius-10" id="fliter-currency">
                   <option value="all">All</option>
 
@@ -61,7 +82,7 @@
           <!-- add-transaction -->
           <div class="flex column wrap radius-10 add-transaction grey-background">
             <p class="white label" >Add Transaction :</p>
-            <p id="input_handler" class="hidden red" for="add-transaction">Please Fill All Required Fields</p>
+            <p id="input-handler" class="hidden red" for="add-transaction">Please Fill All Required Fields</p>
             <div class="flex justify-start wrap radius-10 gap-10">
               <button class="bg-primary-color white radius-10 no-bor no-outl padding-7-15 add-btn" id="add_btn">Add</button>
               <div class="flex gap-10 wrap">
@@ -70,6 +91,7 @@
                     <option value="income">Income</option>
                     <option value="expense">Expense</option>
                   </select>
+                  
                   <select class="no-outln radius-10 padding-7-15 add-currency" id="add-currency">
 
                   </select>
@@ -83,37 +105,9 @@
           </div>
         </section>
       </div>
+      <!-- transactions -->
       <div class ="flex column gap-10 radius-10 transactions-wrapper grey-background" id="transactions">
-        <!-- transaction start -->
-        <!-- <div class="flex align-center dark-grey-background padding-7-15 radius-10 space-between transaction">
-          <div class="flex gap-10 wrap transaction-info white" >
-            <span class="type"><i class="fa-solid fa-arrow-up"></i></span>
-            <div>
-              <span class="amount">50</span>
-              <span class="currency">USD</span>
-            </div>
-            <span class="description">Groceries</span>
-          </div>
-          <div class="flex wrap gap-10 edit-delete">
-            <button class="bg-primary-color white padding-7-15 radius-10 no-bor no-outln edit">Edit</button>
-            <button class="bg-color-red white padding-7-15 radius-10 no-bor no-outln delete">Delete</button>
-          </div>
-        </div>
-        <div class="flex align-center padding-7-15 dark-grey-background radius-10 space-between transaction">
-          <div class="flex wrap gap-10 transaction-info white">
-           <span class="type">Income</span>
-           <div>
-             <span class="amount">200</span>
-             <span class="currency">USD</span>
-            </div>
-           <span class="description">Salary</span>
-          </div>
-          <div class="flex wrap gap-10 edit-delete">
-            <button class="bg-primary-color white padding-7-15 radius-10 no-bor no-outln edit">Edit</button>
-            <button class="bg-color-red white padding-7-15 radius-10 no-bor no-outln delete">Delete</button>
-          </div>
-        </div> -->
-        <!-- transaction end -->
+        
       </div>
     </div>
   </main>
