@@ -126,14 +126,18 @@ const createTransaction = (type, amount, currency, info) => {
     return
   }
   input_handler.classList.add("hidden")
+
   const outer_div = createElement("div", ["flex", "align-center", "dark-grey-background", "padding-7-15", "radius-10", "space-between", "transaction"], null)
   outer_div.id = transaction_id
+
   const info_div = createElement("div", ["flex", "gap-10", "transaction-info", "white"], null)
   const edit_delete_div = createElement("div", ["flex", "wrap", "gap-10", "edit-delete"], null)
   const amount_currency_div = createElement("div", [], null)
-  const type_ele = createElement("i", ["fa-solid", `${type === "expense" ? "fa-arrow-down" : "fa-arrow-up"}`], null)
+  const type_ele = createElement("i", ["fa-solid", `${type === "expense" ? "fa-arrow-down" : "fa-arrow-up"}`, "type"], null, `${type === "expense" ? "expence" : "income"}`)
+
   const amount_ele = createElement("span", ["amount"], `${type === "expense" ? `${- amount}` : `${amount}`}`)
   amount_ele.id = amount_id
+
   const currency_ele = createElement("span", ["currency"], currency)
   const description = createElement("span", ["info"], info)
   const edit_ele = createElement("button", ["bg-primary-color", "padding-7-15", "radius-10", "no-bor", "no-outln", "white", "edit"], "Edit")
@@ -184,8 +188,49 @@ const deleteTransaction = (transaction_id, amount_id) => {
   saveData()
 };
 
-filter_type.addEventListener("change", (element) => {
-  console.log(element.target.value);
+const filterTransactions = () => {
+  const selected_type = filter_type.value
+  const selected_currency = filter_currency.value
+  const amount_to_input = parseFloat(amount_to.value)
+  const amount_from_input = parseFloat(amount_from.value)
+
+  const transactions = document.querySelectorAll(".transaction");
+
+  transactions.forEach((transaction) => {
+    const type = transaction.querySelector(".type").classList.contains("fa-arrow-up") ? "income" : "expense"
+    const currency = transaction.querySelector(".currency").innerText
+    const amount = parseFloat(transaction.querySelector(".amount").innerText)
+    console.log(type, amount, currency)
+
+    const typeMatch = selected_type === 'all' || type === selected_type
+
+    const currencyMatch = selected_currency === 'all' || currency === selected_currency
+
+    const amount_from_input_cond = isNaN(amount_from_input) || amount >= amount_from_input
+    const amount_to_input_cond = isNaN(amount_to_input) || amount <= amount_to_input
+
+    if (typeMatch && currencyMatch && amount_from_input_cond && amount_to_input_cond) {
+      transaction.style.display = 'flex'
+    } else {
+      transaction.style.display = 'none'
+    }
+  })
+}
+
+filter_type.addEventListener("change", () => {
+  filterTransactions()
+})
+
+filter_currency.addEventListener("change", () => {
+  filterTransactions()
+})
+
+amount_to.addEventListener("input", () => {
+  filterTransactions()
+})
+
+amount_from.addEventListener("input", () => {
+  filterTransactions()
 })
 
 transactions.addEventListener("click", (element) => {
