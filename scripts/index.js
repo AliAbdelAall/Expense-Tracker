@@ -203,7 +203,6 @@ const filterTransactions = () => {
     console.log(type, amount, currency)
 
     const typeMatch = selected_type === 'all' || type === selected_type
-
     const currencyMatch = selected_currency === 'all' || currency === selected_currency
 
     const amount_from_input_cond = isNaN(amount_from_input) || amount >= amount_from_input
@@ -240,6 +239,7 @@ transactions.addEventListener("click", (element) => {
     const amount_id = target.closest(".transaction").querySelector(".amount").id
     deleteTransaction(transaction_id, amount_id)
   }
+  if (element.target.classList.contains("edit"))
 })
 
 add_btn.addEventListener("click", () => {
